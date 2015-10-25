@@ -23,7 +23,7 @@ module.exports = function() {
     console.log(path.join(__dirname,'../app/views/public/'));
 
     app.use(session({
-      secret: 'keyboard cat',
+      secret: config.sessionSecret,
       resave: false,
       saveUninitialized: true,
       cookie: { secure: true }

@@ -15,11 +15,11 @@ module.exports = function() {
 
 
     app.use(bodyParser.json());
-	app.use(morgan('dev'));
+    app.use(morgan('dev'));
 
     app.use('/static', express.static(path.join(__dirname,'../app/views/public/')));
 
-    console.log(path.join(__dirname,'../app/views/public/'));
+    
 	require('../app/routes/front.js')(app);
     return app;
 };
