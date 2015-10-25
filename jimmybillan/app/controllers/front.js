@@ -1,15 +1,41 @@
+var credit = {
+		nom : "Billan",
+		prenom : "Jimmy",
+		domain : "http://jimmybillan.fr"
+};
 
+// HTTPS - POST
+exports.loginPost = function(req,res) {
+	var accueil= {credit : credit};
+	var login 	= require('./login/login.js');
 
-exports.login = function(req, res){
-	res.json({err:err});
+	login.login(req.body, function(err, o) {
+		if(!err){
+			req.session.user = o.mail;
+			res.redirect('/auth/panel');
+		}else{
+			res.render('login', accueil);
+		}
+		
+	});
+	
 }
 
 
-exports.accueil = function(req, res) {
-	A = {
-		nom : "Billan",
-		prenom : "Jimmy"
+// HTTPS - GET
+exports.login = function(req, res){
+	var accueil= {credit : credit};
+	if(req.session.user){
+		res.redirect('/auth/panel');
+	}else{
+		res.render('login', accueil);
 	}
+}
 
-	res.render('accueil', A);
+
+
+// HTTP - GET
+exports.accueil = function(req, res) {
+	var accueil= {credit : credit};
+	res.render('accueil', accueil);
 }

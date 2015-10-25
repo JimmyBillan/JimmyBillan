@@ -21,7 +21,5 @@ module.exports = function() {
 
     console.log(path.join(__dirname,'../app/views/public/'));
 	require('../app/routes/front.js')(app);
-    require('../app/routes/backend.js')(app);
-
     return app;
 };

@@ -19,7 +19,7 @@ console.log(process.env.NODE_ENV  + ' server running at http://localhost:' + con
 var https 		= require('https');
 var expresss    = require('./config/expressHTTPS');
 var apps        = expresss();
-var fs 			= require('fs')
+var fs 			= require('fs');
 
 
 apps.set('views', __dirname+'/app/views');

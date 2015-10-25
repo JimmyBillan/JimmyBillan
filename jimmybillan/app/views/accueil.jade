@@ -1,84 +1,27 @@
 html
-	head
-		title= A.nom+" "+A.prenom
-		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		link(href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-		link(rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css")
-
-		script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-		script(type="text/javascript" src="static/accueil.js")  
-		script(src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js")
+	include ./includes/head.jade
 
 	body(style="padding-top: 70px;")
 		nav.navbar.navbar-light.bg-faded.navbar-fixed-top
-			a.navbar-brand(href='#')= A.nom+" "+A.prenom
+			a.navbar-brand(href='#')= credit.nom+" "+credit.prenom
+			form(action="/auth/login")
+				button.pull-right.btn.btn-primary-outline(id='btn_login') Login
 			
 		
 		div
+			- var n = 0
+			while n < 15
+				- n++
+				.col-lg-3.col-sm-6.col-xs-12
+					.card
+						.card-block
+							h4.card-title Card title
+							h6.card-subtitle.text-muted Support card subtitle
+						img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
+						.card-block
+							p.card-text
+								| Some quick example text to build on the card title and make up the bulk of the card's content.
+							a.card-link(href='#') Card link
+							a.card-link(href='#') Another link
 			
-			.col-lg-3.col-sm-6.col-xs-12
-				.card
-					.card-block
-						h4.card-title Card title
-						h6.card-subtitle.text-muted Support card subtitle
-					img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
-					.card-block
-						p.card-text
-							| Some quick example text to build on the card title and make up the bulk of the card's content.
-						a.card-link(href='#') Card link
-						a.card-link(href='#') Another link
-		.col-lg-3.col-sm-6.col-xs-12
-			.card
-				.card-block
-					h4.card-title Card title
-					h6.card-subtitle.text-muted Support card subtitle
-				img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
-				.card-block
-					p.card-text
-						| Some quick example text to build on the card title and make up the bulk of the card's content.
-					a.card-link(href='#') Card link
-					a.card-link(href='#') Another link
-		.col-lg-3.col-sm-6.col-xs-12
-			.card
-				.card-block
-					h4.card-title Card title
-					h6.card-subtitle.text-muted Support card subtitle
-				img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
-				.card-block
-					p.card-text
-						| Some quick example text to build on the card title and make up the bulk of the card's content.
-					a.card-link(href='#') Card link
-					a.card-link(href='#') Another link
-		.col-lg-3.col-sm-6.col-xs-12
-				.card
-					.card-block
-						h4.card-title Card title
-						h6.card-subtitle.text-muted Support card subtitle
-					img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
-					.card-block
-						p.card-text
-							| Some quick example text to build on the card title and make up the bulk of the card's content.
-						a.card-link(href='#') Card link
-						a.card-link(href='#') Another link
-		.col-lg-3.col-sm-6.col-xs-12
-			.card
-				.card-block
-					h4.card-title Card title
-					h6.card-subtitle.text-muted Support card subtitle
-				img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
-				.card-block
-					p.card-text
-						| Some quick example text to build on the card title and make up the bulk of the card's content.
-					a.card-link(href='#') Card link
-					a.card-link(href='#') Another link
-		.col-lg-3.col-sm-6.col-xs-12
-			.card
-				.card-block
-					h4.card-title Card title
-					h6.card-subtitle.text-muted Support card subtitle
-				img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
-				.card-block
-					p.card-text
-						| Some quick example text to build on the card title and make up the bulk of the card's content.
-					a.card-link(href='#') Card link
-					a.card-link(href='#') Another link
+		

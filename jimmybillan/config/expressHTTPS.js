@@ -3,6 +3,8 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
 	morgan      = require('morgan');
 var path        = require('path');
+var session     = require('express-session');
+
 
 
 
@@ -19,7 +21,18 @@ module.exports = function() {
 
     app.use('/static', express.static(path.join(__dirname,'../app/views/public/')));
     console.log(path.join(__dirname,'../app/views/public/'));
-	require('../app/routes/front.js')(app);
+
+    app.use(session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: true,
+      cookie: { secure: true }
+    }))
+
+   
+
+	require('../app/routes/front_s.js')(app);
+
     require('../app/routes/backend.js')(app);
 
     return app;
