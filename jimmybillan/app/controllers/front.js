@@ -1,7 +1,10 @@
+var card 	= require('./card/card.js');
+
 var credit = {
 		nom : "Billan",
 		prenom : "Jimmy",
-		domain : "http://jimmybillan.fr"
+		domain : "http://jimmybillan.fr",
+		domainSecure : "https://jimmybillan.fr"
 };
 
 // HTTPS - POST
@@ -37,5 +40,9 @@ exports.login = function(req, res){
 // HTTP - GET
 exports.accueil = function(req, res) {
 	var accueil= {credit : credit};
-	res.render('accueil', accueil);
+
+	card.getCards(function(rows) {
+		accueil.rowsCard = rows;
+		res.render('accueil', accueil);
+	})
 }

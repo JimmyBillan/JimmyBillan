@@ -17,10 +17,10 @@ module.exports = function() {
 
 
     app.use(bodyParser.json());
-	app.use(morgan('dev'));
+    app.use(morgan('dev'));
 
-    app.use('/static', express.static(path.join(__dirname,'../app/views/public/')));
-    console.log(path.join(__dirname,'../app/views/public/'));
+   
+    
 
     app.use(session({
       secret: config.sessionSecret,
@@ -30,10 +30,12 @@ module.exports = function() {
     }))
 
    
+   
 
 	require('../app/routes/front_s.js')(app);
+  require('../app/routes/backend.js')(app);
 
-    require('../app/routes/backend.js')(app);
-
+  app.use('/auth/static', 
+      express.static(path.join(__dirname,'../app/views/backend/')));
     return app;
 };

@@ -4,24 +4,22 @@ html
 	body(style="padding-top: 70px;")
 		nav.navbar.navbar-light.bg-faded.navbar-fixed-top
 			a.navbar-brand(href='#')= credit.nom+" "+credit.prenom
-			form(action="/auth/login")
+			form(action=credit.domainSecure+"/auth/login/")
 				button.pull-right.btn.btn-primary-outline(id='btn_login') Login
 			
 		
 		div
-			- var n = 0
-			while n < 15
-				- n++
+			each r in rowsCard
 				.col-lg-3.col-sm-6.col-xs-12
 					.card
 						.card-block
-							h4.card-title Card title
-							h6.card-subtitle.text-muted Support card subtitle
-						img(src='http://materializecss.com/images/sample-1.jpg' width="100%")
+							h4.card-title= r.title
+							h6.card-subtitle.text-muted= r.subtitle
+						a(href!=r.imageUrl target="_blank")
+							img(src!=r.imageUrl width="100%")
 						.card-block
-							p.card-text
-								| Some quick example text to build on the card title and make up the bulk of the card's content.
-							a.card-link(href='#') Card link
-							a.card-link(href='#') Another link
+							p.card-text!= r.description
+							a.card-link(href!=r.url1 target="_blank")= r.descUrl1
+							a.card-link(href!=r.url2 target="_blank")= r.descUrl2
 			
 		

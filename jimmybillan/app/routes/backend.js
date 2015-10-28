@@ -1,4 +1,6 @@
 var backend = require('../../app/controllers/backend');
+var express = require('express');
+var path        = require('path');
 
 function requireLogin (req, res, next) {
   if (!req.session.user) {
@@ -14,5 +16,9 @@ module.exports = function(app) {
 		app.use('/auth/*',requireLogin, function(req, res, next){
 	        next()
 	    });
+
 		app.route('/auth/panel').get(backend.panel);
+		app.route('/auth/logout').get(backend.logout);
+
+		app.route('/auth/card/:id*?').post(backend.addCard).get(backend.getCard).put(backend.updateCard).delete(backend.deleteCard);
 };
