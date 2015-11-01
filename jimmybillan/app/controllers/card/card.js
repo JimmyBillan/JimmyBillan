@@ -32,7 +32,6 @@ class Card{
 exports.getCards = function(cb) {
 	var db 		= new sqlite3.Database('jimmybillan.db');
 	db.all("SELECT * FROM cards", function(err, rows) {
-				console.log(rows);
 		cb(rows)
 	})
 	db.close();

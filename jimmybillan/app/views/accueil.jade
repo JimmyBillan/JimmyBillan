@@ -1,25 +1,38 @@
 html
 	include ./includes/head.jade
-
+	
 	body(style="padding-top: 70px;")
 		nav.navbar.navbar-light.bg-faded.navbar-fixed-top
 			a.navbar-brand(href='#')= credit.nom+" "+credit.prenom
-			form(action=credit.domainSecure+"/auth/login/")
-				button.pull-right.btn.btn-primary-outline(id='btn_login') Login
+			ul.nav.nav-tabs
+				li.nav-item
+					a.nav-link.active(id="nav_current") Portfolio
+				li.nav-item.dropdown
+					a.nav-link.dropdown-toggle(data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false") More
+					div.dropdown-menu
+						a.dropdown-item(id="nav_drop_1" href="#networks") Networks
+						div.dropdown-divider
+						a.dropdown-item(id="nav_drop_2" href="#about-me") About Me
 			
-		
-		div
-			each r in rowsCard
-				.col-lg-3.col-sm-6.col-xs-12
-					.card
-						.card-block
-							h4.card-title= r.title
-							h6.card-subtitle.text-muted= r.subtitle
-						a(href!=r.imageUrl target="_blank")
-							img(src!=r.imageUrl width="100%")
-						.card-block
-							p.card-text!= r.description
-							a.card-link(href!=r.url1 target="_blank")= r.descUrl1
-							a.card-link(href!=r.url2 target="_blank")= r.descUrl2
+		div.container(id="container")
+			div(id="portfolio" style="display:none;")
+				each r in rowsCard
+					.col-lg-3.col-sm-6.col-xs-12
+						.card
+							.card-block
+								h4.card-title= r.title
+								h6.card-subtitle.text-muted= r.subtitle
+							a(href!=r.imageUrl target="_blank")
+								img(src!=r.imageUrl width="100%")
+							.card-block
+								p.card-text!= r.description
+								a.card-link(href!=r.url1 target="_blank")= r.descUrl1
+								a.card-link(href!=r.url2 target="_blank")= r.descUrl2
+
+			div(id="networks" style="display:none;") network
+
+			div(id="about-me" style="display:none;") about me
+
+	script(type="text/javascript" src="/static/accueil.js")
 			
 		
