@@ -1,7 +1,7 @@
 html
 	include ./includes/head.jade
 	
-	body(style="padding-top: 70px;")
+	body()
 		nav.navbar.navbar-light.bg-faded.navbar-fixed-top
 			a.navbar-brand(href='#')= credit.nom+" "+credit.prenom
 			ul.nav.nav-tabs
@@ -10,11 +10,18 @@ html
 				li.nav-item.dropdown
 					a.nav-link.dropdown-toggle(data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false") More
 					div.dropdown-menu
-						a.dropdown-item(id="nav_drop_1" href="#networks") Networks
-						div.dropdown-divider
-						a.dropdown-item(id="nav_drop_2" href="#about-me") About Me
+						div(id="nav_drop_portfolio")
+							div.dropdown-divider
+							a.dropdown-item(href="#portfolio") Portfolio
+						div(id="nav_drop_networks" )
+							div.dropdown-divider
+							a.dropdown-item(href="#networks") Networks
+							
+						div(id="nav_drop_about-me")
+							div.dropdown-divider
+							a.dropdown-item(href="#about-me") About Me
 			
-		div.container(id="container")
+		div.container(id="container" style="margin-top: 70px;")
 			div(id="portfolio" style="display:none;")
 				each r in rowsCard
 					.col-lg-3.col-sm-6.col-xs-12
@@ -29,9 +36,14 @@ html
 								a.card-link(href!=r.url1 target="_blank")= r.descUrl1
 								a.card-link(href!=r.url2 target="_blank")= r.descUrl2
 
-			div(id="networks" style="display:none;") network
+			div(id="networks" style="display:none;")
+				div.col-xs-12.col-lg-6(style="padding-bottom: 15px;")
+					h1.brand-primary Mon profil Linkedin
+					a(href="https://fr.linkedin.com/pub/jimmy-billan/109/a7/351" style="text-decoration:none;") https://fr.linkedin.com/pub/jimmy-billan/109/a7/351
+				div.col-xs-12.col-lg-6(style="padding-bottom: 15px;")
+					a.twitter-timeline(href='https://twitter.com/JIM__Is', data-widget-id='660924379992322048') Tweets de @JIM__Is
 
-			div(id="about-me" style="display:none;") about me
+			div(id="about-me" style="display:none;") About me
 
 	script(type="text/javascript" src="/static/accueil.js")
 			

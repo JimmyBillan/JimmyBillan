@@ -1,31 +1,52 @@
 var domain = {uri : "http://"+window.location.hostname+"/"};
 domain.longueur= domain.uri.length;
 
+//Static
 var View = {
 
-    listIdView : ["portfolio","networks","about-me"],
+    listIdView : [
+        {id:"portfolio",printed:"Portfolio"},
+        {id:"networks",printed:"Networks"},
+        {id:"about-me",printed:"About Me"}
+    ],
 
     hideAllViews: function() {
         for (var i = 0; i < this.listIdView.length; i++) {
-            document.getElementById(this.listIdView[i]).style.display="none";   
+            document.getElementById(this.listIdView[i].id).style.display="none";   
         };
     },
-    updateNav : function() {
-
+    showAllElementDropDownNav:function() {
+        for (var i = 0; i < this.listIdView.length; i++) {
+            console.log("nav_drop_"+this.listIdView[i].id);
+            document.getElementById("nav_drop_"+this.listIdView[i].id).style.display="block";   
+        };
+    },
+    updateNav : function(position) {
+        View.showAllElementDropDownNav();
+        document.getElementById("nav_drop_"+this.listIdView[position].id).style.display="none"; 
+        document.getElementById("nav_current").innerHTML = View.listIdView[position].printed;
+     
     },
     showPortfolio: function() {
+        var position = 0;
         View.hideAllViews();
-        document.getElementById("portfolio").style.display="block";
-       
+        View.updateNav(position);
+        document.getElementById(View.listIdView[position].id).style.display="block";
+         window.scrollTo(0,0);
     },
     showNetworks: function() {
+        var position = 1;
         View.hideAllViews();
-        document.getElementById("networks").style.display="block";
-       
+        View.updateNav(position);
+        document.getElementById(View.listIdView[position].id).style.display="block";
+        window.scrollTo(0,0);
     },
     showAboutMe: function() {
+        var position = 2;
         View.hideAllViews();
-        document.getElementById("about-me").style.display="block";
+        View.updateNav(position);
+        document.getElementById(View.listIdView[position].id).style.display="block";
+         window.scrollTo(0,0);
         
     }
 }
@@ -58,6 +79,12 @@ var Router = {
         } 
         setInterval(fn, 50);
     },
+    init:function() {
+        var href = window.location.href;
+        var uri = href.substr(domain.longueur, href.length);
+        this.current = href;
+        this.isValidRoute(uri);
+    },
 
     isValidRoute: function(uri) {
         var routeValided = false;
@@ -73,6 +100,7 @@ var Router = {
         if(routeValided){
             window.location.href = this.current.replace(/#(.*)$/, '') + this.routes[routePosition].path;
             this.routes[routePosition].f();
+
         }else{
             this.moveTo(this.routes[0].path);
         }
@@ -81,6 +109,10 @@ var Router = {
         this.isValidRoute(uri);
     }
 }
-
+Router.init();
 Router.listen();
-Router.moveTo(Router.routes[0].path);
+
+
+
+
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
